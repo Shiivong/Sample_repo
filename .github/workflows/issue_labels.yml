@@ -11,12 +11,13 @@ on:
       - opened
 jobs:
   label_issues:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest 
     permissions:
       issues: write
     steps:
       - name: Get labels
-        run: export tags = ${{ github.event.issue.body }} | grep -Po '\[\K[^]]*'
+        env: 
+          tags : ${{ github.event.issue.body }} | grep -Po '\[\K[^]]*'
       - name: Label issues
         uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
         with:
