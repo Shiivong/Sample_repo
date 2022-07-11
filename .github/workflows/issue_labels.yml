@@ -17,8 +17,6 @@ jobs:
     steps:
       - name: Label issues
         uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
-        env: 
-          tags : ${{ github.event.issue.body }} | grep -Po '\[\K[^]]*'
         with:
-          add-labels: tags
+          add-labels: ${{ github.event.issue.body }} | grep -Po '\[\K[^]]*'
           repo-token: ${{ secrets.BEARER }}
