@@ -3,9 +3,6 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-env:
- tag: ${{ github.event.issue.body }} | grep -Po '\[\K[^]]*' | tail -1
-
 name: Label issues
 on:
   issues:
@@ -18,6 +15,9 @@ jobs:
     permissions:
       issues: write
     steps:
+      - name: Show Label
+        run: |
+         echo ${{ github.event.issue.body }} | grep -Po '\[\K[^]]*' | tail -1
       - name: Label issues
         uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
         with:
