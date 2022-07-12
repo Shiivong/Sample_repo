@@ -15,8 +15,11 @@ jobs:
     permissions:
       issues: write
     steps:
+      - name: Echo Labels
+        run: |
+          echo ${{ github.event.issue.body }} | grep -Po '\[\K[^]]*'
       - name: Label issues
         uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
         with:
-          add-labels: ${{ github.event.issue.body }} | grep -Po '\[\K[^]]*'
+          add-labels: ""
           repo-token: ${{ secrets.BEARER }}
