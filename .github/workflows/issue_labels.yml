@@ -18,13 +18,13 @@ jobs:
       - name: $tag
         id: tags
         run: |
-          echo ::set-output name=temp::echo ${{ github.event.issue.body }} | grep -Po '\[\K[^]]*' | tail -1
-          echo "TEMP"=echo ${{ github.event.issue.body }} | grep -Po '\[\K[^]]*' | tail -1 >> $GITHUB_ENV
-      - name: Label issues
-        uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
-        with:
-          add-labels: ${{ steps.tags.outputs.temp }}
-          repo-token: ${{ secrets.BEARER }}
+          echo "TEMP"=echo ${{ github.event.issue.body }} | grep -Po '\[\K[^]]*' | tail -1 | sed -e 's/"//g' >> $GITHUB_ENV
+#           echo ::set-output name=temp::echo ${{ github.event.issue.body }} | grep -Po '\[\K[^]]*' | tail -1
+#       - name: Label issues
+#         uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
+#         with:
+#           add-labels: ${{ steps.tags.outputs.temp }}
+#           repo-token: ${{ secrets.BEARER }}
       - name: Label issues 1
         uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
         with:
