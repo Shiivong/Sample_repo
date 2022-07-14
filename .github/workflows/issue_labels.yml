@@ -20,6 +20,7 @@ jobs:
         run: |
           TEMP=$(echo ${{ github.event.issue.body }} | grep -Po '\[\K[^]]*' | tail -1)
           echo "TEMP=$TEMP" >> GITHUB_ENV
+          echo ${{ env.TEMP}}
 #           echo ::set-output name=temp::echo ${{ github.event.issue.body }} | grep -Po '\[\K[^]]*' | tail -1
 #       - name: Label issues
 #         uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
